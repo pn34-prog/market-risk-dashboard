@@ -154,6 +154,22 @@ def derived_metric(column, label, series, value_format, unit, delta=None, invers
     column.caption(f"DERIVED · {unit} · {s.index[-1].date()}")
 
 
+def workbook_metric(column, label, series, value_format, unit, delta=None, inverse=False):
+    """Tile for a saved sponsor workbook value (captioned as workbook, not derived)."""
+    s = series.dropna() if series is not None else pd.Series(dtype=float)
+    if s.empty:
+        column.metric(label, "—", help="Not in the imported workbook")
+        column.caption(f"Workbook · {unit} · unavailable")
+        return
+    column.metric(
+        label,
+        value_format.format(s.iloc[-1]),
+        delta,
+        delta_color="inverse" if inverse else "normal",
+    )
+    column.caption(f"Workbook · {unit} · {s.index[-1].date()}")
+
+
 def shade_recessions(fig, data, start=None):
     if "USREC" not in data:
         return

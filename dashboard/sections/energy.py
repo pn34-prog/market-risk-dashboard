@@ -14,7 +14,6 @@ import streamlit as st
 from dashboard.sections.common import (
     clip,
     cross_check,
-    derived_metric,
     line_figure,
     load,
     lookback_start,
@@ -23,6 +22,7 @@ from dashboard.sections.common import (
     render_workbook,
     snapshot_table,
     sources_table,
+    workbook_metric,
     workbook_series,
 )
 from dashboard.sections.extras import workbook_unavailable
@@ -126,7 +126,7 @@ def _tiles(saved):
         columns = st.columns(len(row))
         for column, (key, fmt, inverse) in zip(columns, row, strict=True):
             _, label, unit = SERIES[key]
-            derived_metric(column, label, saved[key], fmt, unit, _yoy_text(saved[key]), inverse)
+            workbook_metric(column, label, saved[key], fmt, unit, _yoy_text(saved[key]), inverse)
     st.caption("Workbook values; tiles show the latest saved month and its Y/Y change.")
 
 

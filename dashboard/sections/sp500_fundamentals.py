@@ -22,6 +22,7 @@ from dashboard.sections.common import (
     render_workbook,
     snapshot_table,
     sources_table,
+    workbook_metric,
     workbook_series,
 )
 from dashboard.sections.extras import workbook_unavailable
@@ -83,24 +84,26 @@ def _change_text(series, back, suffix):
     s = series.dropna()
     if len(s) <= back:
         return None
-    return f"{s.iloc[-1] - s.iloc[-1 - back]:+.1f} {suffix}"
+    sep = "" if suffix.startswith("x") else " "
+    return f"{s.iloc[-1] - s.iloc[-1 - back]:+.1f}{sep}{suffix}"
 
 
 def _tiles(saved):
     st.subheader("Valuation and profitability")
+    ey = earnings_yield(saved["pe"])
     columns = st.columns(4)
-    derived_metric(
-        columns[0], "S&P 500 P/E", saved["pe"], "{:.1f}x", "x", _change_text(saved["pe"], 4, "Y/Y")
+    workbook_metric(
+        columns[0],
+        "S&P 500 P/E",
+        saved["pe"],
+        "{:.1f}x",
+        "x",
+        _change_text(saved["pe"], 4, "x Y/Y"),
     )
     derived_metric(
-        columns[1],
-        "Earnings yield",
-        earnings_yield(saved["pe"]),
-        "{:.2f}%",
-        "% (100 ÷ P/E)",
-        _change_text(earnings_yield(saved["pe"]), 4, "pp Y/Y"),
+        columns[1], "Earnings yield", ey, "{:.2f}%", "% (100 ÷ P/E)", _change_text(ey, 4, "pp Y/Y")
     )
-    derived_metric(
+    workbook_metric(
         columns[2],
         "Operating margin",
         saved["margin"],
@@ -108,7 +111,7 @@ def _tiles(saved):
         "%",
         _change_text(saved["margin"], 4, "pp Y/Y"),
     )
-    derived_metric(
+    workbook_metric(
         columns[3],
         "Return on equity",
         saved["roe"],
@@ -116,7 +119,7 @@ def _tiles(saved):
         "%",
         _change_text(saved["roe"], 4, "pp Y/Y"),
     )
-    st.caption("Workbook values; changes are versus four quarters earlier.")
+    st.caption("Changes are versus four quarters earlier. Earnings yield is calculated from P/E.")
 
 
 def _fair_pe(ctx, saved):
