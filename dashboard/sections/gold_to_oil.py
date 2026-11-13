@@ -28,6 +28,7 @@ from dashboard.sections.common import (
 from dashboard.sections.extras import add_reference, workbook_unavailable
 from src.analytics.commodities import episodes_above, implied_prices, zscore
 from src.analytics.empirical import deviation
+from src.analytics.sectors import ordinal
 from src.analytics.signals import percentile_rank
 
 IDS = ["DCOILBRENTEU", "USREC"]
@@ -117,7 +118,7 @@ def _summary(ctx, saved):
         "—" if np.isnan(gap) else f"{gap:+.0f}%",
         help="Latest ratio ÷ long-term average − 1",
     )
-    c.caption(f"{pct:.0f}th percentile since {saved['ratio'].index[0].year}")
+    c.caption(f"{ordinal(pct)} percentile since {saved['ratio'].index[0].year}")
     d.metric("Z-score", "—" if np.isnan(z) else f"{z:+.1f}σ")
     d.caption(f"{above['months']} of {len(saved['ratio'])} months at or above today's level")
     st.caption(

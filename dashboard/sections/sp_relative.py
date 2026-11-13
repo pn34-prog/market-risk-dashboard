@@ -25,6 +25,7 @@ from dashboard.sections.common import (
 )
 from dashboard.sections.extras import add_reference, workbook_unavailable
 from src.analytics.empirical import deviation, reversion_levels
+from src.analytics.sectors import ordinal
 from src.analytics.signals import percentile_rank, ratio
 
 IDS = ["SP500", "DCOILWTICO", "USREC"]
@@ -134,7 +135,8 @@ def _summary(ctx):
             "—" if np.isnan(row["vs 7Yr average (%)"]) else f"{row['vs 7Yr average (%)']:+.1f}%",
             help="Latest ratio ÷ sponsor's saved 7-year moving average − 1",
         )
-        columns[2 * i + 1].caption(f"{row['Percentile since 1950']:.0f}th percentile since 1950")
+        rank = ordinal(row["Percentile since 1950"])
+        columns[2 * i + 1].caption(f"{rank} percentile since 1950")
     for row in rows:
         ctx.table_view(pd.DataFrame([row]), hide_index=True)
     st.caption("Implied levels are arithmetic reference points (see Methodology), not forecasts.")
