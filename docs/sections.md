@@ -136,4 +136,4 @@ Same structure as the pages above (`dashboard/sections/<page>.py`, `render(ctx, 
 
 ## One-page layout option
 
-`page_tabs` in `dashboard/sections/common.py` returns either tabs or the same four sections stacked on one scrolling page, with a "Jump to" link row. Energy, Gold to Oil and S&P 500 Fundamentals use the one-page layout (`STACKED_PAGES`); every other page keeps tabs. Set `STACK_ALL = True` to use the one-page layout everywhere.
+`page_tabs` in `dashboard/sections/common.py` returns either tabs or the same four sections stacked on one scrolling page, with a "Jump to" link row. Energy, Gold to Oil, S&P 500 Fundamentals and S&P Relative use the one-page layout (`STACKED_PAGES`); every other page keeps tabs. Set `STACK_ALL = True` to use the one-page layout everywhere.

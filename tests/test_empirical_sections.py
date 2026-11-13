@@ -221,8 +221,12 @@ def test_page_with_snapshot(title, charts, database):
     app = run(title)
     assert not app.exception
     assert app.title[0].value == title
-    assert len(app.tabs) == 4
-    assert app.tabs[0].label == "Sponsor workbook"
+    if title == "S&P Relative":  # one-page layout: sections stacked, not tabbed
+        assert len(app.tabs) == 0
+        assert app.header[0].value == "Sponsor workbook"
+    else:
+        assert len(app.tabs) == 4
+        assert app.tabs[0].label == "Sponsor workbook"
     assert len(app.get("plotly_chart")) >= charts
     assert not any("UNAVAILABLE · No validated workbook snapshot" in w.value for w in app.warning)
 

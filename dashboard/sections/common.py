@@ -379,7 +379,7 @@ def sources_table(ctx, ids, notes):
 # Pages listed here show all four sections on one scrolling page instead of tabs. Set
 # STACK_ALL = True to use the one-page layout everywhere.
 STACK_ALL = False
-STACKED_PAGES = {"Energy", "Gold to Oil", "S&P 500 Fundamentals"}
+STACKED_PAGES = {"Energy", "Gold to Oil", "S&P 500 Fundamentals", "S&P Relative"}
 
 
 def _anchor(label):
