@@ -376,15 +376,40 @@ def sources_table(ctx, ids, notes):
     )
 
 
+# Pages listed here show all four sections on one scrolling page instead of tabs. Set
+# STACK_ALL = True to use the one-page layout everywhere.
+STACK_ALL = False
+STACKED_PAGES = {"Energy", "Gold to Oil", "S&P 500 Fundamentals"}
+
+
+def _anchor(label):
+    words = "".join(c if c.isalnum() else " " for c in label.lower()).split()
+    return "-".join(words)
+
+
 def page_tabs(title, independent_first_label="Independent analytics"):
-    """Workbook tab leads when a validated snapshot exists; otherwise analytics lead."""
+    """Workbook section leads when a validated snapshot exists; otherwise analytics lead.
+
+    Returns four containers in a fixed order (workbook, analytics, indicators, methodology).
+    They are tabs, or headed sections on one page for titles in ``STACKED_PAGES``.
+    """
     labels = ["Sponsor workbook", independent_first_label, "Indicators", "Methodology & sources"]
     if workbook_section(title) is None:
         labels = [labels[1], labels[0], labels[2], labels[3]]
-    tabs = dict(zip(labels, st.tabs(labels), strict=True))
+    if STACK_ALL or title in STACKED_PAGES:
+        st.markdown("Jump to: " + " · ".join(f"[{label}](#{_anchor(label)})" for label in labels))
+        boxes = {}
+        for i, label in enumerate(labels):
+            if i:
+                st.divider()
+            box = st.container()
+            box.header(label, anchor=_anchor(label))
+            boxes[label] = box
+    else:
+        boxes = dict(zip(labels, st.tabs(labels), strict=True))
     return (
-        tabs["Sponsor workbook"],
-        tabs[independent_first_label],
-        tabs["Indicators"],
-        tabs["Methodology & sources"],
+        boxes["Sponsor workbook"],
+        boxes[independent_first_label],
+        boxes["Indicators"],
+        boxes["Methodology & sources"],
     )

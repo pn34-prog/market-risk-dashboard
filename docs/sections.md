@@ -133,3 +133,7 @@ Same structure as the pages above (`dashboard/sections/<page>.py`, `render(ctx, 
 - **Gold to Oil**: the old range stopped at row 463 and dropped the newest month (row 464, 2026-10-29).
 - **S&P 500 Fundamentals**: the dividends & buybacks block (W:AB) is gone from the workbook, so its two charts are removed from the mapping. Ask the sponsor whether it should return.
 - **Sponsor's Gold to Oil implied-price block**: in Excel, Q24 (gold spot) still points at row 463 and Q28 (oil spot) points at X17, which equals the implied oil price. The page recomputes these and shows the difference.
+
+## One-page layout option
+
+`page_tabs` in `dashboard/sections/common.py` returns either tabs or the same four sections stacked on one scrolling page, with a "Jump to" link row. Energy, Gold to Oil and S&P 500 Fundamentals use the one-page layout (`STACKED_PAGES`); every other page keeps tabs. Set `STACK_ALL = True` to use the one-page layout everywhere.

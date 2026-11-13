@@ -147,8 +147,14 @@ def test_page_with_snapshot(title, charts, database):
     app = run(title)
     assert not app.exception
     assert app.title[0].value == title
-    assert len(app.tabs) == 4
-    assert app.tabs[0].label == "Sponsor workbook"
+    assert len(app.tabs) == 0  # one-page layout: sections are stacked, not tabbed
+    headers = [h.value for h in app.header]
+    assert headers == [
+        "Sponsor workbook",
+        "Independent analytics",
+        "Indicators",
+        "Methodology & sources",
+    ]
     assert len(app.get("plotly_chart")) >= charts
 
 
@@ -157,6 +163,8 @@ def test_pages_without_snapshot(title, database):
     app = run(title)
     assert not app.exception
     assert any("UNAVAILABLE" in w.value for w in app.warning)
+    # Without a snapshot the independent analytics lead.
+    assert app.header[0].value == "Independent analytics"
 
 
 def test_energy_lag_study_finds_rig_lag(database):
