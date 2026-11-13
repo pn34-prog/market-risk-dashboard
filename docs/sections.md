@@ -116,3 +116,20 @@ The three Empirical tabs are sponsor research data, updated manually each month,
 - **VIX & Options**: put/call cells now also use `#,##0.00` / `0.00`. These formats are allowed.
 - **Still blocking a full import** (import is all-or-nothing): Financing row 3 now holds text period labels ("2017 Q4 (Rep)") instead of dates, which needs importer support for label-based quarters; Bear Market (`B7`) and Bull vs Bear (`W3`) layouts changed and need their owners' mapping updates.
 - FC Data's Industrials chart in Excel plots G6:UU6 against F3:UU3 (one-column offset). The mapping uses F6:UU6 so that each value keeps its own date.
+
+# Dedicated pages: S&P 500 Fundamentals, Gold to Oil, Energy
+
+Same structure as the pages above (`dashboard/sections/<page>.py`, `render(ctx, render_section)`, four tabs). Pure calculations are in `src/analytics/commodities.py` (tests: `tests/test_commodities.py`). Page renders against a synthetic snapshot built from the real mapping are tested in `tests/test_market_sections.py`.
+
+| Page | Sponsor workbook (mapped) | Analytics added |
+|---|---|---|
+| S&P 500 Fundamentals | P/E (BEST_PE_RATIO), operating margin and ROE, quarterly, B:I | Tiles with Y/Y; earnings yield; P/E implied by a linear fit on margin and on ROE (with R² and premium), scatter plots and premium history; earnings yield vs 10Y Treasury (FRED DGS10) gap; change table with percentiles and z-scores |
+| Gold to Oil | Gold/Brent ratio, long-term average and Brent (H:L); implied-price block N23:Q29 | Distance from average, percentile, z-score, months at/above today's level; implied gold and Brent recomputed from the latest row and compared with the sponsor block (difference > 1% flagged); history bands; derived gold price; FRED Brent spot cross-check |
+| Energy | All Energy-tab charts: oil production, oil rigs vs WTI, production per rig, gas production (Marcellus, Haynesville, US), gas rigs vs Henry Hub | Tiles with Y/Y; Y/Y comparison of production, rigs and price; rigs-follow-prices lag study (correlation by lag, 0–12 months); gas output per rig (two basins); change table; FRED WTI and Henry Hub spot cross-checks |
+
+## Mapping changes for the 2026-11 workbook
+
+- **Ranges have headroom** (Energy to row 600, Gold to Oil to 700, Fundamentals to 300). The importer skips trailing empty rows, so new months appear without mapping edits.
+- **Gold to Oil**: the old range stopped at row 463 and dropped the newest month (row 464, 2026-10-29).
+- **S&P 500 Fundamentals**: the dividends & buybacks block (W:AB) is gone from the workbook, so its two charts are removed from the mapping. Ask the sponsor whether it should return.
+- **Sponsor's Gold to Oil implied-price block**: in Excel, Q24 (gold spot) still points at row 463 and Q28 (oil spot) points at X17, which equals the implied oil price. The page recomputes these and shows the difference.

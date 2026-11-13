@@ -11,16 +11,16 @@ Saved sponsor Excel is primary wherever mapped. All 19 substantive worksheets we
 | Bear Market | Saved current/benchmark checklist, flags and score | Historical averages preserved; operator-dependent flags must be reviewed |
 | S&P vs Bonds | Two cached spread/relative-multiple charts | Authorized refresh; sponsor calculation definitions retained |
 | Valuation | Historical benchmarks and current saved values | Dedicated page: rate-relative earnings yield, equity value/GDP, profits/GDP, P/E models (see sections.md) |
-| S&P 500 Fundamentals | Four charts, including payouts and growth | Two BQL anchor caches absent; early Y/Y values unavailable |
+| S&P 500 Fundamentals | Dedicated page: P/E, margin, ROE charts; fair-P/E fits; earnings-yield gap vs 10Y | Dividends & buybacks block removed from the 2026-11 workbook |
 | Margin Debt | Benchmarks and two ratio charts | FINRA manual input, hardcoded market cap, sponsor unit review |
 | S&P Relative | Gold/WTI ratios, 7-year averages, current lines and underlying prices (2026-11 layout) | Dedicated page: distance from average, percentiles, implied levels, FRED S&P 500 ÷ WTI spot cross-check; no free gold history. Manual formula extensions |
-| Gold to Oil | Ratio/average/Brent chart and implied-price table | Fixed row-463 endpoints need authorized Excel maintenance |
+| Gold to Oil | Dedicated page: ratio, average, Brent; recomputed implied prices; FRED Brent cross-check | Sponsor's N23:Q29 block still uses fixed row 463 in Excel (flagged on the page) |
 | Banks | Net charge-offs chart | Dedicated page: Fed delinquency/charge-offs by loan type, SLOOS, H.8 loans/deposits; FDIC QBP not connected |
 | Bull vs Bear | Bull-minus-bear chart, decile table and auxiliary AAII chart | 2,025 BQL forward-return error texts; no Python fabrication or predictive claims |
 | VIX & Options | Three charts and reference lines; options-activity percentiles | Fixed chart endpoints clip longer source histories. Dedicated page: VIX, VIX3M, VXN, OVX, GVZ, term structure, implied − realized, signal board |
 | BTC | Saved holdings/debt coverage table | Strategy holdings, debt/preferred and cost basis are manual |
 | Housing | Six charts with series-specific dates and secondary axes | Dedicated page: PMMS, pipeline, new-home sales/supply, payment affordability; NAR existing-home data workbook-only |
-| Energy | Five production/rig/efficiency charts | Futures vs spot and gas units preserved; EIA balances not connected |
+| Energy | Dedicated page: five sponsor charts; rig/price lag study; gas per rig; FRED WTI/Henry Hub cross-checks | EIA inventory/balances not connected |
 | Recession | Saved 17-indicator checklist and Sahm chart | Dedicated page: automated 17-item checklist (15 from FRED; LEI/PMI use saved flags), checklist at prior recession starts; no real-time vintages |
 | Consumer | Three charts | Dedicated page: real income/spending, real wages, debt service, credit growth, card stress, sentiment |
 | Demand | Six company charts with reported/forward separation | Dedicated page: automated Demand Tracker; BLS productivity and Fed/Census semiconductor proxies; SIA billings via analyst log |

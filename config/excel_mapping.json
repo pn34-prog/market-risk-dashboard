@@ -1280,7 +1280,7 @@
         "S&P 500 Fundamentals"
       ],
       "notes": [
-        "B:R Bloomberg/BQL sources; W:AC sponsor calculations. L23 and Q23 have no formula cache (BQL spill anchors); downstream dated numeric results are independent saved values. Large BQL tables include identity/header rows, not observations."
+        "B:I Bloomberg BDH sources (P/E, operating margin, ROE), quarterly. The 2026-11 workbook no longer contains the dividends & buybacks block (W:AB); those two charts were removed from the mapping. Ranges run to row 300 so new quarters are picked up without mapping edits (trailing empty rows are skipped)."
       ],
       "charts": [
         {
@@ -1292,9 +1292,9 @@
               "name": "S&P 500 P/E",
               "role": "metric",
               "sheet": "S&P 500 Fundamentals",
-              "values": "C23:C129",
+              "values": "C23:C300",
               "date_sheet": "S&P 500 Fundamentals",
-              "dates": "B23:B129",
+              "dates": "B23:B300",
               "date_mapping_inferred": false,
               "kind": "LineChart",
               "secondary": false,
@@ -1313,9 +1313,9 @@
               "name": "Operating Margin",
               "role": "metric",
               "sheet": "S&P 500 Fundamentals",
-              "values": "F23:F129",
+              "values": "F23:F300",
               "date_sheet": "S&P 500 Fundamentals",
-              "dates": "E23:E129",
+              "dates": "E23:E300",
               "date_mapping_inferred": true,
               "kind": "LineChart",
               "secondary": true,
@@ -1340,9 +1340,9 @@
               "name": "S&P 500 P/E",
               "role": "metric",
               "sheet": "S&P 500 Fundamentals",
-              "values": "C23:C129",
+              "values": "C23:C300",
               "date_sheet": "S&P 500 Fundamentals",
-              "dates": "B23:B129",
+              "dates": "B23:B300",
               "date_mapping_inferred": false,
               "kind": "LineChart",
               "secondary": false,
@@ -1361,9 +1361,9 @@
               "name": "ROE",
               "role": "metric",
               "sheet": "S&P 500 Fundamentals",
-              "values": "I23:I129",
+              "values": "I23:I300",
               "date_sheet": "S&P 500 Fundamentals",
-              "dates": "H23:H129",
+              "dates": "H23:H300",
               "date_mapping_inferred": true,
               "kind": "LineChart",
               "secondary": true,
@@ -1373,123 +1373,6 @@
               "expected_number_format": "0.0",
               "allowed_number_formats": [
                 "0.0"
-              ],
-              "allow_forward": false,
-              "period_labels_row": null
-            }
-          ]
-        },
-        {
-          "id": "sandp_500_fundamentals_2",
-          "title": "S&P 500 Dividends & Buybacks",
-          "series": [
-            {
-              "id": "sandp_500_fundamentals_2_0",
-              "name": "Dividends",
-              "role": "metric",
-              "sheet": "S&P 500 Fundamentals",
-              "values": "X25:X129",
-              "date_sheet": "S&P 500 Fundamentals",
-              "dates": "W25:W129",
-              "date_mapping_inferred": false,
-              "kind": "BarChart",
-              "secondary": false,
-              "unit": "\"$\"#,##0.00",
-              "value_type": "number",
-              "date_type": "excel_date",
-              "expected_number_format": "\"$\"#,##0.00",
-              "allowed_number_formats": [
-                "\"$\"#,##0.00"
-              ],
-              "allow_forward": false,
-              "period_labels_row": null
-            },
-            {
-              "id": "sandp_500_fundamentals_2_1",
-              "name": "Buybacks",
-              "role": "metric",
-              "sheet": "S&P 500 Fundamentals",
-              "values": "Y25:Y129",
-              "date_sheet": "S&P 500 Fundamentals",
-              "dates": "W25:W129",
-              "date_mapping_inferred": false,
-              "kind": "BarChart",
-              "secondary": false,
-              "unit": "\"$\"#,##0.00",
-              "value_type": "number",
-              "date_type": "excel_date",
-              "expected_number_format": "\"$\"#,##0.00",
-              "allowed_number_formats": [
-                "\"$\"#,##0.00"
-              ],
-              "allow_forward": false,
-              "period_labels_row": null
-            },
-            {
-              "id": "sandp_500_fundamentals_2_2",
-              "name": "Total",
-              "role": "metric",
-              "sheet": "S&P 500 Fundamentals",
-              "values": "Z25:Z129",
-              "date_sheet": "S&P 500 Fundamentals",
-              "dates": "W25:W129",
-              "date_mapping_inferred": false,
-              "kind": "LineChart",
-              "secondary": false,
-              "unit": "\"$\"#,##0.00",
-              "value_type": "number",
-              "date_type": "excel_date",
-              "expected_number_format": "\"$\"#,##0.00",
-              "allowed_number_formats": [
-                "\"$\"#,##0.00"
-              ],
-              "allow_forward": false,
-              "period_labels_row": null
-            }
-          ]
-        },
-        {
-          "id": "sandp_500_fundamentals_3",
-          "title": "Y/Y Change in Dividends & Buybacks",
-          "series": [
-            {
-              "id": "sandp_500_fundamentals_3_0",
-              "name": "Div %",
-              "role": "metric",
-              "sheet": "S&P 500 Fundamentals",
-              "values": "AA25:AA129",
-              "date_sheet": "S&P 500 Fundamentals",
-              "dates": "W25:W129",
-              "date_mapping_inferred": false,
-              "kind": "LineChart",
-              "secondary": false,
-              "unit": "0%",
-              "value_type": "number",
-              "date_type": "excel_date",
-              "expected_number_format": "0%",
-              "allowed_number_formats": [
-                "0%"
-              ],
-              "allow_forward": false,
-              "period_labels_row": null
-            },
-            {
-              "id": "sandp_500_fundamentals_3_1",
-              "name": "Buyback %",
-              "role": "metric",
-              "sheet": "S&P 500 Fundamentals",
-              "values": "AB25:AB129",
-              "date_sheet": "S&P 500 Fundamentals",
-              "dates": "W25:W129",
-              "date_mapping_inferred": false,
-              "kind": "LineChart",
-              "secondary": false,
-              "unit": "0%",
-              "value_type": "number",
-              "date_type": "excel_date",
-              "expected_number_format": "0%",
-              "allowed_number_formats": [
-                "0%"
               ],
               "allow_forward": false,
               "period_labels_row": null
@@ -1878,7 +1761,7 @@
         "Gold to Oil"
       ],
       "notes": [
-        "B:F Bloomberg inputs, H:L cached ratios/long-term average; N23:Q29 implied prices and upside/downside use fixed row 463. New observations require extending formulas AND updating these fixed endpoints in Excel."
+        "B:F Bloomberg inputs, H:L cached ratios/long-term average. Chart ranges run to row 700 so each new month is picked up without mapping edits (trailing empty rows are skipped). The sponsor's N23:Q29 implied-price block still references fixed row 463 in Excel (and the oil rows point at X16:X18), so the dedicated page recomputes implied prices from the latest saved row and flags any mismatch."
       ],
       "charts": [
         {
@@ -1890,9 +1773,9 @@
               "name": "Gold/Oil",
               "role": "metric",
               "sheet": "Gold to Oil",
-              "values": "K4:K463",
+              "values": "K4:K700",
               "date_sheet": "Gold to Oil",
-              "dates": "H4:H463",
+              "dates": "H4:H700",
               "date_mapping_inferred": false,
               "kind": "LineChart",
               "secondary": false,
@@ -1911,9 +1794,9 @@
               "name": "LT Avg.",
               "role": "metric",
               "sheet": "Gold to Oil",
-              "values": "L4:L463",
+              "values": "L4:L700",
               "date_sheet": "Gold to Oil",
-              "dates": "H4:H463",
+              "dates": "H4:H700",
               "date_mapping_inferred": false,
               "kind": "LineChart",
               "secondary": false,
@@ -1932,9 +1815,9 @@
               "name": "Brent (C01)",
               "role": "metric",
               "sheet": "Gold to Oil",
-              "values": "J4:J463",
+              "values": "J4:J700",
               "date_sheet": "Gold to Oil",
-              "dates": "H4:H463",
+              "dates": "H4:H700",
               "date_mapping_inferred": false,
               "kind": "LineChart",
               "secondary": true,
@@ -2637,7 +2520,8 @@
         "Energy"
       ],
       "notes": [
-        "Bloomberg source pairs B:C, E:F, H:I, N:O, Q:R, T:U, W:X, Z:AA. K:L and AC:AD are calculated efficiencies. WTI/Henry Hub use futures tickers CL1/NG1; gas Bcfd and Bcf axes differ. Chart endpoints are shorter than source columns."
+        "Bloomberg source pairs B:C, E:F, H:I, N:O, Q:R, T:U, W:X, Z:AA. K:L and AC:AD are calculated efficiencies. WTI/Henry Hub use futures tickers CL1/NG1; gas Bcfd and Bcf axes differ. Chart endpoints are shorter than source columns.",
+        "Chart ranges run to row 600 so new months are picked up without mapping edits (trailing empty rows are skipped)."
       ],
       "charts": [
         {
@@ -2649,9 +2533,9 @@
               "name": "US Oil Production",
               "role": "metric",
               "sheet": "Energy",
-              "values": "C24:C300",
+              "values": "C24:C600",
               "date_sheet": "Energy",
-              "dates": "B24:B300",
+              "dates": "B24:B600",
               "date_mapping_inferred": false,
               "kind": "LineChart",
               "secondary": false,
@@ -2676,9 +2560,9 @@
               "name": "Oil Rigs",
               "role": "metric",
               "sheet": "Energy",
-              "values": "F24:F300",
+              "values": "F24:F600",
               "date_sheet": "Energy",
-              "dates": "E24:E300",
+              "dates": "E24:E600",
               "date_mapping_inferred": false,
               "kind": "BarChart",
               "secondary": false,
@@ -2697,9 +2581,9 @@
               "name": "WTI",
               "role": "metric",
               "sheet": "Energy",
-              "values": "I24:I300",
+              "values": "I24:I600",
               "date_sheet": "Energy",
-              "dates": "H24:H300",
+              "dates": "H24:H600",
               "date_mapping_inferred": true,
               "kind": "LineChart",
               "secondary": true,
@@ -2724,9 +2608,9 @@
               "name": "Efficiency",
               "role": "metric",
               "sheet": "Energy",
-              "values": "L24:L300",
+              "values": "L24:L600",
               "date_sheet": "Energy",
-              "dates": "K24:K300",
+              "dates": "K24:K600",
               "date_mapping_inferred": false,
               "kind": "BarChart",
               "secondary": false,
@@ -2751,9 +2635,9 @@
               "name": "Marcellus (Bcfd)",
               "role": "metric",
               "sheet": "Energy",
-              "values": "R24:R260",
+              "values": "R24:R600",
               "date_sheet": "Energy",
-              "dates": "Q24:Q260",
+              "dates": "Q24:Q600",
               "date_mapping_inferred": true,
               "kind": "BarChart",
               "secondary": false,
@@ -2772,9 +2656,9 @@
               "name": "Haynesville (Bcfd)",
               "role": "metric",
               "sheet": "Energy",
-              "values": "U24:U260",
+              "values": "U24:U600",
               "date_sheet": "Energy",
-              "dates": "T24:T260",
+              "dates": "T24:T600",
               "date_mapping_inferred": true,
               "kind": "BarChart",
               "secondary": false,
@@ -2793,9 +2677,9 @@
               "name": "US Gas Marketed Production (Bcf)",
               "role": "metric",
               "sheet": "Energy",
-              "values": "X24:X258",
+              "values": "X24:X600",
               "date_sheet": "Energy",
-              "dates": "W24:W258",
+              "dates": "W24:W600",
               "date_mapping_inferred": false,
               "kind": "LineChart",
               "secondary": true,
@@ -2820,9 +2704,9 @@
               "name": "Gas Rigs",
               "role": "metric",
               "sheet": "Energy",
-              "values": "O24:O260",
+              "values": "O24:O600",
               "date_sheet": "Energy",
-              "dates": "N24:N260",
+              "dates": "N24:N600",
               "date_mapping_inferred": false,
               "kind": "BarChart",
               "secondary": false,
@@ -2841,9 +2725,9 @@
               "name": "Henry Hub",
               "role": "metric",
               "sheet": "Energy",
-              "values": "AA24:AA260",
+              "values": "AA24:AA600",
               "date_sheet": "Energy",
-              "dates": "Z24:Z260",
+              "dates": "Z24:Z600",
               "date_mapping_inferred": true,
               "kind": "LineChart",
               "secondary": true,
